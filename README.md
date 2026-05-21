@@ -1,1 +1,1 @@
-# Frontend Proyecto Peliculas y Series
+# Frontend Catálogo de Películas y Series
