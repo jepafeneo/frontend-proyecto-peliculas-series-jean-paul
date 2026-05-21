@@ -1,5 +1,12 @@
 function Navbar() {
-  return <nav></nav>;
+  return (
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Peliculas</a>
+      <a href="#">Series</a>
+      <a href="#">Admin</a>
+    </nav>
+  );
 }
 
 export default Navbar;
