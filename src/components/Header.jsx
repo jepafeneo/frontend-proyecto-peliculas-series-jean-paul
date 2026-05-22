@@ -6,7 +6,7 @@ function Header() {
       <div className="header-content container">
         <div className="header-item">ScreenHub</div>
         <Navbar />
-        {/* <span className="header-item"></span> */}
+        {/* <input type="search" placeholder="Buscar..." className="header-item" /> */}
       </div>
     </header>
   );

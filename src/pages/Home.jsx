@@ -1,3 +1,6 @@
+import { movies } from "../data/movies";
+import MovieCard from "../components/MovieCard";
+
 function Home() {
   return (
     <main>
@@ -13,6 +16,18 @@ function Home() {
           <a className="button" href="#">
             Ver catálogo
           </a>
+        </div>
+      </section>
+
+      <section className="featured-section">
+        <div className="container">
+          <h2>Contenido destacado</h2>
+
+          <div className="movie-list">
+            {movies.slice(0, 3).map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
         </div>
       </section>
 
