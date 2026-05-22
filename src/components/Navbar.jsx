@@ -1,6 +1,6 @@
 function Navbar() {
   return (
-    <nav>
+    <nav className="header-item">
       <a href="#">Inicio</a>
       <a href="#">Peliculas</a>
       <a href="#">Series</a>
