@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer>
-      <div>
+    <footer className="site-footer">
+      <div className="container">
         <p>Proyecto Final - Bootcamp Neoland Web Developement</p>
       </div>
     </footer>

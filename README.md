@@ -13,6 +13,14 @@ Aplicación web para gestionar un catálogo de películas y series.
 - CSS
 - JavaScript
 
+## Clonar el repositorio
+
+```shell
+git clone https://github.com/jepafeneo/frontend-proyecto-peliculas-series-jean-paul
+
+git switch dev
+```
+
 ## Cómo ejecutar el proyecto
 
 ```shell
