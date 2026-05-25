@@ -5,6 +5,7 @@ export const movies = [
     genre: "Drama",
     year: 2008,
     image: "https://picsum.photos/400/600?random=1",
+    featured: true,
   },
   {
     id: 2,
@@ -12,13 +13,15 @@ export const movies = [
     genre: "Ciencia ficción",
     year: 2016,
     image: "https://picsum.photos/400/600?random=2",
+    featured: false,
   },
   {
     id: 3,
     title: "The Batman",
-    genre: "Acción y superhéroes, Thriller, Misterio, Crimen",
+    genre: "Acción",
     year: 2022,
     image: "https://picsum.photos/400/600?random=3",
+    featured: false,
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ export const movies = [
     genre: "Drama histórico",
     year: 2016,
     image: "https://picsum.photos/400/600?random=4",
+    featured: false,
   },
   {
     id: 5,
@@ -33,5 +37,14 @@ export const movies = [
     genre: "Fantasía",
     year: 2019,
     image: "https://picsum.photos/400/600?random=5",
+    featured: true,
+  },
+  {
+    id: 6,
+    title: "Interstellar",
+    genre: "Ciencia ficción",
+    year: 2014,
+    image: "https://picsum.photos/400/600?random=6",
+    featured: true,
   },
 ];
