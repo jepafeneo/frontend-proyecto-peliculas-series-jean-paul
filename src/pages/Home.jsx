@@ -1,7 +1,11 @@
 import { movies } from "../data/movies";
-import MovieCard from "../components/MovieCard";
+import MovieList from "../components/MovieList";
 
 function Home() {
+  const featuredMovies = movies.filter((movie) => movie.featured);
+
+  const newMovies = movies.slice(0, 3); // 3 primeras
+
   return (
     <main>
       <section className="hero">
@@ -23,19 +27,17 @@ function Home() {
         <div className="container">
           <h2>Contenido destacado</h2>
 
-          <div className="movie-list">
-            {movies.slice(0, 3).map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
+          <MovieList movies={featuredMovies} />
         </div>
       </section>
 
-      {/* <div style={{ width: "300", border: "solid red" }}>
-        <img src="https://picsum.photos/300/100" alt="Lorem Picsum" />
-      </div> */}
+      <section className="new-movies-section">
+        <div className="container">
+          <h2>Nuevas peliculas</h2>
 
-      <img src="https://picsum.photos/2200/300" alt="Lorem Picsum" />
+          <MovieList movies={newMovies} />
+        </div>
+      </section>
     </main>
   );
 }
