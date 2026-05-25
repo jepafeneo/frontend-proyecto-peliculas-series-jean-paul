@@ -16,7 +16,7 @@ a {
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   display: block;
 }
 
@@ -33,10 +33,12 @@ img {
 .header-content {
   min-height: 100px;
   padding: 1rem 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .header-item {
@@ -47,7 +49,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem; /* 16px */
+  gap: 1rem;
+  /* 16px */
 }
 
 .hero {
@@ -90,16 +93,25 @@ img {
 }
 
 .movie-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* flex-direction: column; */
   gap: 24px;
 }
 
 .movie-card {
   width: 100%;
   background-color: #1f2937;
+  border: 1px solid #374151;
   border-radius: 12px;
   overflow: hidden;
+  transition: 
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  border-color: #60a5fa;
 }
 
 .movie-card img {
@@ -141,6 +153,12 @@ img {
   }
 
   .movie-list {
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
