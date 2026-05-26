@@ -16,7 +16,7 @@ a {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
   display: block;
 }
 
@@ -104,7 +104,7 @@ img {
   border: 1px solid #374151;
   border-radius: 12px;
   overflow: hidden;
-  transition: 
+  transition:
     transform 0.2s ease,
     border-color 0.2s ease;
 }
@@ -137,6 +137,53 @@ img {
 .movie-card span {
   color: #93c5fd;
   font-weight: bold;
+}
+
+/* Catalog Section */
+
+.catalog-section,
+.new-movies-section {
+  padding: 40px 0 80px;
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  margin: 0 0 8px;
+}
+
+.section-header p {
+  margin: 0;
+  color: #d1d5db;
+}
+
+.search-label {
+  display: none;
+}
+
+.search-input {
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  background-color: #020617;
+  color: #f9fafb;
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.empty-message {
+  padding: 24px;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  background-color: #1f2937;
+  color: #d1d5db;
 }
 
 /* Media queries */
