@@ -2,8 +2,6 @@ export const movies = [
   {
     id: 1,
     title: "Breaking Bad",
-    description:
-      "Un profesor de química convertido en fabricante de metanfetaminas se adentra en el mundo del crimen para asegurar el futuro de su familia.",
     genre: "Drama",
     year: 2008,
     image: "https://picsum.photos/400/600?random=1",
@@ -55,6 +53,36 @@ export const movies = [
     genre: "Ciencia ficción",
     year: 2014,
     image: "https://picsum.photos/400/600?random=6",
+    featured: true,
+  },
+  {
+    id: 7,
+    title: "Inception",
+    description:
+      "Un ladrón que roba secretos a través del uso de la tecnología de sueños es dado la tarea inversa de plantar una idea en la mente de un CEO.",
+    genre: "Ciencia ficción",
+    year: 2010,
+    image: "https://picsum.photos/400/600?random=7",
+    featured: false,
+  },
+  {
+    id: 8,
+    title: "The Mandalorian",
+    description:
+      "Un cazarrecompensas solitario en los confines de la galaxia, lejos de la autoridad de la Nueva República, se encuentra con un niño misterioso que se convierte en su protegido.",
+    genre: "Ciencia ficción",
+    year: 2019,
+    image: "https://picsum.photos/400/600?random=8",
+    featured: false,
+  },
+  {
+    id: 9,
+    title: "The Lord of the Rings: The Fellowship of the Ring",
+    description:
+      "Un joven hobbit llamado Frodo Baggins se embarca en una peligrosa misión para destruir un anillo mágico que tiene el poder de controlar el mundo.",
+    genre: "Fantasía",
+    year: 2001,
+    image: "https://picsum.photos/400/600?random=9",
     featured: true,
   },
 ];

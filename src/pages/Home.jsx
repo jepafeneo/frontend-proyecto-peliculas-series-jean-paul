@@ -4,18 +4,47 @@ import { useState } from "react";
 
 function Home() {
   const [search, setSearch] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("Todos");
 
-  const filteredMovies = movies.filter(
-    (movie) =>
-      movie.title.toLowerCase().includes(search.toLowerCase()) ||
-      movie?.description?.toLowerCase().includes(search.toLowerCase()),
-  );
+  // Sergio
+  let filteredMovies = [];
+
+  if (search || selectedGenre != "Todos") {
+    filteredMovies = movies.filter((movie) => {
+      const matchesSearch =
+        movie.title.toLowerCase().includes(search.toLowerCase()) ||
+        movie?.description?.toLowerCase().includes(search.toLowerCase());
+
+      const matchesGenre =
+        selectedGenre == "Todos" || movie.genre == selectedGenre;
+
+      return matchesSearch && matchesGenre;
+    });
+  }
+
+  // Pelayo
+  // const filteredMovies = movies.filter((movie) => {
+  //   const matchesGenre =
+  //     selectedGenre == "Todos" || movie.genre == selectedGenre;
+
+  //   return matchesGenre;
+  // });
+
+  // const matchSearch =
+  //   vehicle.marca.toLowerCase().includes(search.toLowerCase()) ||
+  //   vehicle?.modelo?.toLowerCase().includes(search.toLowerCase());
+  // const matchCombustible = combustibleFilter
+  //   ? vehicle.combustible === combustibleFilter
+  //   : true;
+  // return matchSearch && matchCombustible;
 
   const featuredMovies = movies.filter((movie) => movie.featured);
 
   const newMovies = movies.slice(0, 3); // 3 primeras
 
   const hasResults = filteredMovies.length > 0;
+
+  const genres = ["Todos", ...new Set(movies.map((movie) => movie.genre))];
 
   return (
     <main>
@@ -70,13 +99,37 @@ function Home() {
             onChange={(event) => setSearch(event.target.value)}
           />
 
-          {hasResults ? (
+          <select
+            className="filter-select"
+            value={selectedGenre}
+            onChange={(event) => setSelectedGenre(event.target.value)}
+          >
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+
+          {/* {hasResults ? (
             <MovieList movies={filteredMovies} />
           ) : (
             <p className="empty-message">
               No encontramos resultados para la busqueda
             </p>
+          )} */}
+
+          {/* Pelayo */}
+          {/* <MovieList movies={filteredMovies} /> */}
+
+          {/* Sergio */}
+          {search && !hasResults && (
+            <p className="empty-message">
+              No encontramos resultados para la busqueda
+            </p>
           )}
+
+          {hasResults && <MovieList movies={filteredMovies} />}
         </div>
       </section>
     </main>

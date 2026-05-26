@@ -186,6 +186,17 @@ img {
   color: #d1d5db;
 }
 
+.filter-select {
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  background-color: #020617;
+  color: #f9fafb;
+  font-size: 1rem;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {
