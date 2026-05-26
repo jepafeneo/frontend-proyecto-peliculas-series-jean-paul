@@ -5,6 +5,7 @@ import { useState } from "react";
 function Home() {
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("Todos");
+  const [sortBy, setSortBy] = useState("default");
 
   // Sergio
   let filteredMovies = [];
@@ -16,7 +17,7 @@ function Home() {
         movie?.description?.toLowerCase().includes(search.toLowerCase());
 
       const matchesGenre =
-        selectedGenre == "Todos" || movie.genre == selectedGenre;
+        selectedGenre == "Todos" || movie.genre == selectedGenre; // 1 === '1'
 
       return matchesSearch && matchesGenre;
     });
@@ -37,6 +38,22 @@ function Home() {
   //   ? vehicle.combustible === combustibleFilter
   //   : true;
   // return matchSearch && matchCombustible;
+
+  const sortedMovies = [...filteredMovies].sort((a, b) => {
+    if (sortBy == "az") {
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
+      return 0;
+    }
+
+    if (sortBy === "newest") {
+      return b.year - a.year;
+    }
+
+    if (sortBy === "oldest") {
+      return a.year - b.year;
+    }
+  });
 
   const featuredMovies = movies.filter((movie) => movie.featured);
 
@@ -111,6 +128,17 @@ function Home() {
             ))}
           </select>
 
+          <select
+            className="filter-select"
+            value={sortBy}
+            onChange={(event) => setSortBy(event.target.value)}
+          >
+            <option value="default">Orden por defecto</option>
+            <option value="az">A-Z</option>
+            <option value="newest">Más nuevo</option>
+            <option value="oldest">Más viejo</option>
+          </select>
+
           {/* {hasResults ? (
             <MovieList movies={filteredMovies} />
           ) : (
@@ -129,7 +157,7 @@ function Home() {
             </p>
           )}
 
-          {hasResults && <MovieList movies={filteredMovies} />}
+          {hasResults && <MovieList movies={sortedMovies} />}
         </div>
       </section>
     </main>
