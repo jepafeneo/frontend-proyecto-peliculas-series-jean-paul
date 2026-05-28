@@ -4,7 +4,7 @@ export const movies = [
     title: "Breaking Bad",
     genre: "Drama",
     year: 2008,
-    image: "https://picsum.photos/400/600?random=1",
+    image: "https://picsum.photos/300/400?random=1",
     featured: true,
   },
   {
@@ -12,7 +12,7 @@ export const movies = [
     title: "Stranger Things",
     genre: "Ciencia ficción",
     year: 2016,
-    image: "https://picsum.photos/400/600?random=2",
+    image: "https://picsum.photos/300/400?random=2",
     featured: false,
   },
   {
@@ -22,7 +22,7 @@ export const movies = [
       "El Caballero Oscuro regresa a las calles de Gotham para enfrentar a nuevos villanos y proteger a su ciudad.",
     genre: "Acción",
     year: 2022,
-    image: "https://picsum.photos/400/600?random=3",
+    image: "https://picsum.photos/300/400?random=3",
     featured: false,
   },
   {
@@ -32,7 +32,7 @@ export const movies = [
       "Una mirada íntima a la vida de la Reina Isabel II, explorando los desafíos y triunfos de su reinado a lo largo de las décadas.",
     genre: "Drama histórico",
     year: 2016,
-    image: "https://picsum.photos/400/600?random=4",
+    image: "https://picsum.photos/300/400?random=4",
     featured: false,
   },
   {
@@ -42,7 +42,7 @@ export const movies = [
       "Geralt de Rivia, un cazador de monstruos solitario, lucha por encontrar su lugar en un mundo donde las personas a menudo son más malvadas que las bestias.",
     genre: "Fantasía",
     year: 2019,
-    image: "https://picsum.photos/400/600?random=5",
+    image: "https://picsum.photos/300/400?random=5",
     featured: true,
   },
   {
@@ -52,7 +52,7 @@ export const movies = [
       "Un grupo de exploradores viaja a través de un agujero de gusano en el espacio en un intento por asegurar la supervivencia de la humanidad.",
     genre: "Ciencia ficción",
     year: 2014,
-    image: "https://picsum.photos/400/600?random=6",
+    image: "https://picsum.photos/300/400?random=6",
     featured: true,
   },
   {
@@ -62,7 +62,7 @@ export const movies = [
       "Un ladrón que roba secretos a través del uso de la tecnología de sueños es dado la tarea inversa de plantar una idea en la mente de un CEO.",
     genre: "Ciencia ficción",
     year: 2010,
-    image: "https://picsum.photos/400/600?random=7",
+    image: "https://picsum.photos/300/400?random=7",
     featured: false,
   },
   {
@@ -72,7 +72,7 @@ export const movies = [
       "Un cazarrecompensas solitario en los confines de la galaxia, lejos de la autoridad de la Nueva República, se encuentra con un niño misterioso que se convierte en su protegido.",
     genre: "Ciencia ficción",
     year: 2019,
-    image: "https://picsum.photos/400/600?random=8",
+    image: "https://picsum.photos/300/400?random=8",
     featured: false,
   },
   {
@@ -82,7 +82,7 @@ export const movies = [
       "Un joven hobbit llamado Frodo Baggins se embarca en una peligrosa misión para destruir un anillo mágico que tiene el poder de controlar el mundo.",
     genre: "Fantasía",
     year: 2001,
-    image: "https://picsum.photos/400/600?random=9",
+    image: "https://picsum.photos/300/400?random=9",
     featured: true,
   },
 ];

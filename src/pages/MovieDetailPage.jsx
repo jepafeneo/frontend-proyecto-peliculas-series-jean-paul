@@ -26,20 +26,21 @@ function MovieDetailPage() {
     <main>
       <section className="catalog-section">
         <div className="container">
+          <article className="movie-detail">
+            <img src={movie.image} alt={movie.title} />
+
+            <div className="movie-detail-content">
+              <h1>{movie.title}</h1>
+
+              <p className="movie-detail-description">{movie?.description}</p>
+              <p>Genero: {movie.genre}</p>
+              <span>Año: {movie.year}</span>
+            </div>
+          </article>
+
           <Link className="button" to="/movies">
             Volver al catalogo
           </Link>
-
-          <article className="movie-card">
-            <img src={movie.image} alt={movie.title} />
-
-            <div className="movie-card-content">
-              <h3>{movie.title}</h3>
-              <p>{movie?.description}</p>
-              <p>{movie.genre}</p>
-              <span>{movie.year}</span>
-            </div>
-          </article>
         </div>
       </section>
     </main>

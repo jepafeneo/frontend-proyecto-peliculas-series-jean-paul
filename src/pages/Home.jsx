@@ -1,9 +1,8 @@
 import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate();
   const featuredMovies = movies.filter((movie) => movie.featured);
   const newMovies = movies.slice(0, 3); // 3 primeras
 
@@ -22,15 +21,6 @@ function Home() {
           <Link className="button" to="/movies">
             Ver catálogo
           </Link>
-
-          <button
-            className="button"
-            type="button"
-            onClick={() => navigate("/movies")}
-          >
-            Ver catálogo
-          </button>
-
         </div>
       </section>
 
