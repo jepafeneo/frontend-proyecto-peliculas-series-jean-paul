@@ -2,13 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-import MoviesPage from "../pages/MoviesPage";
+import MoviePage from "../pages/MoviesPage";
 import MovieDetailPage from "../pages/MovieDetailPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <NotFoundPage />,
     children: [
       {
         index: true,
@@ -16,12 +18,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "/movies",
-        element: <MoviesPage />,
+        element: <MoviePage />,
       },
       {
         path: "/movies/:id",
         element: <MovieDetailPage />,
       },
+      // {
+      //   path: "*",
+      //   element: <NotFoundPage />,
+      // },
     ],
   },
 ]);

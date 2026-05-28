@@ -214,11 +214,11 @@ img {
 
 .movie-detail img {
   width: 100%;
-  border-radius: 12px;
+  height: 250px;
   object-fit: cover;
-  object-position: center;
-  max-height: 250px;
   display: block;
+  border-radius: 12px;
+  object-position: center;
 }
 
 .movie-detail-description {
