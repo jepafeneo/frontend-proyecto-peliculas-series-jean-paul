@@ -5,8 +5,7 @@ function Navbar() {
     <nav className="header-item">
       <Link to="/">Inicio</Link>
       <Link to="/movies">Peliculas</Link>
-      <a href="#">Series</a>
-      <a href="#">Admin</a>
+      <Link to="/admin">Admin</Link>
     </nav>
   );
 }
