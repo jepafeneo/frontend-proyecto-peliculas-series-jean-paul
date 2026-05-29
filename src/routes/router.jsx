@@ -21,11 +21,11 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/movies",
+        path: "movies",
         element: <MoviePage />,
       },
       {
-        path: "/movies/:id",
+        path: "movies/:id",
         element: <MovieDetailPage />,
       },
       // {

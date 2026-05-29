@@ -105,6 +105,7 @@ img {
 }
 
 .movie-card {
+  cursor: pointer;
   width: 100%;
   background-color: #1f2937;
   border: 1px solid #374151;
@@ -281,9 +282,20 @@ img {
   display: block;
 }
 
+.movie-filters {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {
+  .movie-filters {
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: end;
+  }
+
   .header-content {
     min-height: 72px;
     flex-direction: row;

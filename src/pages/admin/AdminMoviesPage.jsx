@@ -1,5 +1,4 @@
 import { movies } from "../../data/movies";
-import { Link } from "react-router-dom";
 
 function AdminMoviesPage() {
   return (
@@ -11,9 +10,9 @@ function AdminMoviesPage() {
         </div>
       </div>
 
-      <Link to="#" className="button">
-        Nueva Pelicula
-      </Link>
+      <button className="button" type="button">
+        Nueva película
+      </button>
 
       <div className="admin-list">
         {movies.map((movie) => (
