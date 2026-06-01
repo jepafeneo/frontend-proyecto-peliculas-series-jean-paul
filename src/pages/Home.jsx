@@ -2,6 +2,7 @@ import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
 import { Link } from "react-router-dom";
 import SearchBox from "../components/SearchBox";
+import MovieCarousel from "../components/MovieCarousel";
 
 function Home() {
   const featuredMovies = movies.filter((movie) => movie.featured);
@@ -34,6 +35,8 @@ function Home() {
           <MovieList movies={featuredMovies} />
         </div>
       </section>
+
+      <MovieCarousel movies={movies} />
 
       <section className="new-movies-section">
         <div className="container">

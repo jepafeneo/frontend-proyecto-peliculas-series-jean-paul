@@ -345,6 +345,47 @@ img {
   color: #9ca3af;
 }
 
+/* Carousel */
+
+.movie-carousel-section {
+  padding: 40px 0 80px;
+}
+
+.movie-carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 24px;
+}
+
+.movie-carousel-header h2 {
+  margin: 0;
+}
+
+.movie-carousel-header span {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.movie-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.movie-carousel-item {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.movie-carousel-item h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {
