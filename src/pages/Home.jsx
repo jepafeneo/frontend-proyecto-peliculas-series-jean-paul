@@ -1,6 +1,7 @@
 import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
 import { Link } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
 
 function Home() {
   const featuredMovies = movies.filter((movie) => movie.featured);
@@ -17,6 +18,8 @@ function Home() {
             Explora películas y series, consulta sus detalles y administra el
             contenido desde un panel privado.
           </p>
+
+          <SearchBox movies={movies} />
 
           <Link className="button" to="/movies">
             Ver catálogo

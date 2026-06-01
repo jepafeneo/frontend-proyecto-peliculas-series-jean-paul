@@ -1,5 +1,7 @@
 import Navbar from "./Navbar";
 import logo from "../assets/favicon.svg";
+import SearchBox from "./SearchBox";
+import { movies } from "../data/movies";
 
 function Header() {
   return (
@@ -9,6 +11,7 @@ function Header() {
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <Navbar />
+        <SearchBox movies={movies} />
       </div>
     </header>
   );
