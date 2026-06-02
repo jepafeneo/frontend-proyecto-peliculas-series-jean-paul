@@ -1,18 +1,28 @@
+import { useState } from "react";
 import { movies } from "../../data/movies";
+import MovieForm from "../../components/MovieForm";
 
 function AdminMoviesPage() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <section className="admin-section">
-      <div className="admin-section-header">
+      <div className="admin-page-header">
         <div>
-          <h2>Admintracion de peliculas</h2>
+          <h2>Administración de películas</h2>
           <p>Listado interno de películas y series.</p>
         </div>
+
+        <button
+          className="admin-create-button"
+          type="button"
+          onClick={() => setShowForm(!showForm)}
+        >
+          {showForm ? "Cerrar el formulario" : "Nueva película"}
+        </button>
       </div>
 
-      <button className="button" type="button">
-        Nueva película
-      </button>
+      {showForm && <MovieForm />}
 
       <div className="admin-list">
         {movies.map((movie) => (

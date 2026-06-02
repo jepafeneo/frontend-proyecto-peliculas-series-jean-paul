@@ -288,6 +288,21 @@ img {
   margin-bottom: 24px;
 }
 
+/* Admin styles */
+
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-page-header p {
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
 /* Search Box */
 
 .search-box {
@@ -386,6 +401,47 @@ img {
   text-overflow: ellipsis;
 }
 
+/* Movie Form styles */
+
+.movie-form {
+  display: grid;
+  gap: 1rem;
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.movie-form-button {
+  max-width: 200px;
+  place-self: center;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
 /* Media queries */
 
 @media (min-width: 768px) {
