@@ -10,7 +10,7 @@ const initialForm = {
   featured: false,
 };
 
-function MovieForm() {
+function MovieForm({ onCreateMovie }) {
   const [form, setForm] = useState(initialForm);
 
   const handleChange = (event) => {
@@ -22,12 +22,46 @@ function MovieForm() {
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!form.title.trim()) {
+      alert("Ingrese el titulo");
+      return;
+    }
+
+    if (!form.description.trim()) {
+      alert("Ingrese una descripción");
+      return;
+    }
+
+    //     !""
+    if (!form.genre) {
+      alert("Seleccione un genero");
+      return;
+    }
+
+    if (!form.image.trim()) {
+      alert("Ingrese una imagen");
+      return;
+    }
+
+    if (!form.year) {
+      alert("Ingrese un año");
+      return;
+    }
+
+    onCreateMovie(form);
+
+    setForm(initialForm);
+  };
+
   return (
-    <form className="movie-form">
+    <form className="movie-form" onSubmit={handleSubmit}>
       <h2>Nueva Pelicula</h2>
 
       <div className="form-group">
-        <label htmlFor="title">Titulo</label>
+        <label htmlFor="title">Titulo: </label>
         <input
           type="text"
           placeholder="Matrix"
@@ -114,6 +148,8 @@ function MovieForm() {
       <button className="button movie-form-button" type="submit">
         Guardar pelicula
       </button>
+
+      <pre>{JSON.stringify(form, null, 2)}</pre>
     </form>
   );
 }

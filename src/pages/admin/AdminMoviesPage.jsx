@@ -1,9 +1,21 @@
 import { useState } from "react";
-import { movies } from "../../data/movies";
+import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
 
 function AdminMoviesPage() {
   const [showForm, setShowForm] = useState(false);
+  const [movies, setMovies] = useState(initialMovies);
+
+  const handleCreateMovie = (movieData) => {
+    const newMovie = {
+      ...movieData,
+      id: Date.now(),
+    };
+
+    setMovies([...movies, newMovie]);
+
+    setShowForm(false);
+  };
 
   return (
     <section className="admin-section">
@@ -22,7 +34,7 @@ function AdminMoviesPage() {
         </button>
       </div>
 
-      {showForm && <MovieForm />}
+      {showForm && <MovieForm onCreateMovie={handleCreateMovie} />}
 
       <div className="admin-list">
         {movies.map((movie) => (
