@@ -1,22 +1,22 @@
 export const categories = [
   {
     id: 1,
-    name: "Drama",
+    title: "Drama",
   },
   {
     id: 2,
-    name: "Ciencia ficción",
+    title: "Ciencia ficción",
   },
   {
     id: 3,
-    name: "Acción",
+    title: "Acción",
   },
   {
     id: 4,
-    name: "Drama histórico",
+    title: "Drama histórico",
   },
   {
     id: 5,
-    name: "Fantasía",
+    title: "Fantasía",
   },
 ];
