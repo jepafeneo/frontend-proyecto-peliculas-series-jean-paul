@@ -22,7 +22,7 @@ function AdminMoviesPage() {
     setMessage("Pelicula creada correctamente");
   };
 
-  const handleDelete = (id) => {
+  const handleDeleteMovie = (id) => {
     // const confimed = confirm("¿Desea eliminar esta pelicula?");
 
     // if (!confimed) {
@@ -68,6 +68,18 @@ function AdminMoviesPage() {
       setMessage("");
     }, 3000);
   }, [message]);
+
+  useEffect(() => {
+    if (!movieToDelete) {
+      return;
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setMovieToDelete(null);
+      }
+    });
+  }, [movieToDelete]);
 
   return (
     <section className="admin-section">
@@ -144,7 +156,7 @@ function AdminMoviesPage() {
 
               <button
                 type="button"
-                onClick={() => handleDelete(movieToDelete.id)}
+                onClick={() => handleDeleteMovie(movieToDelete.id)}
               >
                 Eliminar
               </button>
