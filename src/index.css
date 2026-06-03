@@ -473,6 +473,23 @@ img {
   background-color: #1d4ed8;
 }
 
+.admin-action-button {
+  padding: 0.55rem 0.8rem;
+  border: 0;
+  border-radius: 0.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-action-button.edit {
+  background-color: #2563eb;
+}
+
+.admin-action-button.delete {
+  background-color: #dc2626;
+}
+
 /* Admin message */
 
 .admin-message {
@@ -487,7 +504,7 @@ img {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -506,6 +523,23 @@ img {
   gap: 1rem;
   justify-content: flex-end;
   margin-top: 1.5rem;
+}
+
+.modal-button {
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 0.7rem;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-button.secondary {
+  background-color: #374151;
+}
+
+.modal-button.danger {
+  background-color: #dc2626;
 }
 
 /* Media queries */

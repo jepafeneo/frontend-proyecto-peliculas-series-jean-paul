@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
 
@@ -8,6 +8,8 @@ function AdminMoviesPage() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [message, setMessage] = useState("");
   const [movieToDelete, setMovieToDelete] = useState(null);
+
+  const messageRef = useRef(null);
 
   const handleCreateMovie = (movieData) => {
     const newMovie = {
@@ -64,6 +66,11 @@ function AdminMoviesPage() {
       return;
     }
 
+    messageRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
     setTimeout(() => {
       setMessage("");
     }, 3000);
@@ -83,7 +90,11 @@ function AdminMoviesPage() {
 
   return (
     <section className="admin-section">
-      {message && <p className="admin-message">{message}</p>}
+      {message && (
+        <p ref={messageRef} className="admin-message">
+          {message}
+        </p>
+      )}
 
       <div className="admin-page-header">
         <div>
@@ -123,6 +134,7 @@ function AdminMoviesPage() {
 
               <div className="admin-actions">
                 <button
+                  className="admin-action-button edit"
                   type="button"
                   onClick={() => {
                     setSelectedMovie(movie);
@@ -131,7 +143,11 @@ function AdminMoviesPage() {
                 >
                   Editar
                 </button>
-                <button type="button" onClick={() => setMovieToDelete(movie)}>
+                <button
+                  className="admin-action-button delete"
+                  type="button"
+                  onClick={() => setMovieToDelete(movie)}
+                >
                   Eliminar
                 </button>
               </div>
@@ -142,7 +158,7 @@ function AdminMoviesPage() {
 
       {movieToDelete && (
         <div className="modal-overlay" onClick={() => setMovieToDelete(null)}>
-          <div className="modal">
+          <div className="modal" onClick={(event) => event.stopPropagation()}>
             <h2>Eliminar película</h2>
 
             <p>
@@ -150,11 +166,16 @@ function AdminMoviesPage() {
             </p>
 
             <div className="modal-actions">
-              <button type="button" onClick={() => setMovieToDelete(null)}>
+              <button
+                className="modal-button secondary"
+                type="button"
+                onClick={() => setMovieToDelete(null)}
+              >
                 Cancelar
               </button>
 
               <button
+                className="modal-button danger"
                 type="button"
                 onClick={() => handleDeleteMovie(movieToDelete.id)}
               >

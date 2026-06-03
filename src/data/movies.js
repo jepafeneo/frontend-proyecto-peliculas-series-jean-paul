@@ -2,6 +2,8 @@ export const movies = [
   {
     id: 1,
     title: "Breaking Bad",
+    description:
+      "Un profesor de química diagnosticado con cáncer de pulmón se asocia con un ex alumno para fabricar y vender metanfetamina, lo que desencadena una serie de eventos que cambian sus vidas para siempre.",
     genre: "Drama",
     year: 2008,
     image: "https://picsum.photos/300/400?random=1",
@@ -10,6 +12,8 @@ export const movies = [
   {
     id: 2,
     title: "Stranger Things",
+    description:
+      "Un grupo de niños en un pequeño pueblo descubre un mundo paralelo lleno de criaturas aterradoras mientras buscan a su amigo desaparecido.",
     genre: "Ciencia ficción",
     year: 2016,
     image: "https://picsum.photos/300/400?random=2",
