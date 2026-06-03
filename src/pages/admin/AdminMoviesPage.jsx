@@ -43,7 +43,7 @@ function AdminMoviesPage() {
             <div>
               <h3>{movie.title}</h3>
               <p>
-                {movie.genre} • {movie.year}
+                {movie.genre} • {movie.year}{" "}
               </p>
             </div>
           </article>
