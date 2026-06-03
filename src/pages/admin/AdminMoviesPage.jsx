@@ -7,6 +7,7 @@ function AdminMoviesPage() {
   const [movies, setMovies] = useState(initialMovies);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [message, setMessage] = useState("");
+  const [movieToDelete, setMovieToDelete] = useState(null);
 
   const handleCreateMovie = (movieData) => {
     const newMovie = {
@@ -22,14 +23,16 @@ function AdminMoviesPage() {
   };
 
   const handleDelete = (id) => {
-    const confimed = confirm("¿Desea eliminar esta pelicula?");
+    // const confimed = confirm("¿Desea eliminar esta pelicula?");
 
-    if (!confimed) {
-      return;
-    }
+    // if (!confimed) {
+    //   return;
+    // }
 
     const filteredMovies = movies.filter((movie) => movie.id != id);
     setMovies(filteredMovies);
+
+    setMovieToDelete(null);
 
     setMessage("Pelicula eliminada correctamente");
   };
@@ -116,7 +119,7 @@ function AdminMoviesPage() {
                 >
                   Editar
                 </button>
-                <button type="button" onClick={() => handleDelete(movie.id)}>
+                <button type="button" onClick={() => setMovieToDelete(movie)}>
                   Eliminar
                 </button>
               </div>
@@ -124,6 +127,31 @@ function AdminMoviesPage() {
           </article>
         ))}
       </div>
+
+      {movieToDelete && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Eliminar película</h2>
+
+            <p>
+              ¿Desea eliminar <strong>{movieToDelete.title}</strong>?
+            </p>
+
+            <div className="modal-actions">
+              <button type="button" onClick={() => setMovieToDelete(null)}>
+                Cancelar
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleDelete(movieToDelete.id)}
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
