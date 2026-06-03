@@ -473,6 +473,15 @@ img {
   background-color: #1d4ed8;
 }
 
+/* Admin message */
+
+.admin-message {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: #14532d;
+  color: white;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {

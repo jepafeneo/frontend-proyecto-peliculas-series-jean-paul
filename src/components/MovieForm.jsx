@@ -1,5 +1,5 @@
 import { categories } from "../data/categories";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initialForm = {
   title: "",
@@ -10,8 +10,10 @@ const initialForm = {
   featured: false,
 };
 
-function MovieForm({ onCreateMovie }) {
+function MovieForm({ onCreateMovie, movie, onUpdateMovie }) {
   const [form, setForm] = useState(initialForm);
+
+  const isEditing = Boolean(movie);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -51,14 +53,27 @@ function MovieForm({ onCreateMovie }) {
       return;
     }
 
-    onCreateMovie(form);
+    if (isEditing) {
+      onUpdateMovie(movie.id, form);
+    } else {
+      onCreateMovie(form);
+    }
 
     setForm(initialForm);
   };
 
+  useEffect(() => {
+    if (movie) {
+      setForm({
+        ...initialForm,
+        ...movie,
+      });
+    }
+  }, [movie]);
+
   return (
     <form className="movie-form" onSubmit={handleSubmit}>
-      <h2>Nueva Pelicula</h2>
+      <h2>{isEditing ? "Editar pelicula" : "Nueva Pelicula"}</h2>
 
       <div className="form-group">
         <label htmlFor="title">Titulo: </label>
@@ -92,16 +107,10 @@ function MovieForm({ onCreateMovie }) {
         >
           <option value="">Selecionar un genero</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.id}>
+            <option key={category.id} value={category.title}>
               {category.title}
             </option>
           ))}
-
-          {/* <option value="drama">Drama</option>
-          <option value="2">Acción</option>
-          <option value="Comedia">Comedia</option>
-          <option value="Terror">Terror</option>
-          <option value="Ciencia ficción">Ciencia ficción</option> */}
         </select>
       </div>
 
@@ -146,7 +155,7 @@ function MovieForm({ onCreateMovie }) {
       </div>
 
       <button className="button movie-form-button" type="submit">
-        Guardar pelicula
+        {isEditing ? "Actualizar pelicula" : "Guardar pelicula"}
       </button>
 
       <pre>{JSON.stringify(form, null, 2)}</pre>
