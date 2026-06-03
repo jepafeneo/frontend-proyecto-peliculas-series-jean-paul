@@ -129,7 +129,7 @@ function AdminMoviesPage() {
       </div>
 
       {movieToDelete && (
-        <div className="modal-overlay">
+        <div className="modal-overlay" onClick={() => setMovieToDelete(null)}>
           <div className="modal">
             <h2>Eliminar película</h2>
 
