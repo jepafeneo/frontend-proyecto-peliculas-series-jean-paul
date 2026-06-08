@@ -11,7 +11,7 @@ function MovieCarousel({ movies }) {
 
         <div className="movie-carousel">
           {movies.map((movie) => (
-            <div className="movie-carousel-item" key={movie.id}>
+            <div className="movie-carousel-item" key={movie._id}>
               <MovieCard movie={movie} />
             </div>
           ))}

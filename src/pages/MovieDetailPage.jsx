@@ -1,11 +1,39 @@
 import { Link, useParams } from "react-router-dom";
-import { movies } from "../data/movies";
+// import { movies } from "../data/movies";
+import { useEffect, useState } from "react";
+import { getMovieById } from "../services/movieService";
 
 function MovieDetailPage() {
   const { id } = useParams();
 
-  const movie = movies.find((m) => m.id == id); // 1 == '1'
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // const movie = movies.find((m) => m.id == id); // 1 == '1'
   //   const movie = movies.find((m) => m.id === Number(id)); // 1 === 1
+
+  useEffect(() => {
+    const loadMovie = async () => {
+      try {
+        const data = await getMovieById(id);
+        setMovie(data);
+      } catch {
+        setError("Pelicula no encontrada");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadMovie();
+  }, [id]);
+
+  if (loading) {
+    return <p className="empty-message">Cargando pelicula</p>;
+  }
+
+  // if (error) {
+  //   return <p className="empty-message">{error}</p>;
+  // }
 
   if (!movie) {
     return (

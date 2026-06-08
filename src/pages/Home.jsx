@@ -1,12 +1,45 @@
-import { movies } from "../data/movies";
+// import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
 import { Link } from "react-router-dom";
 // import SearchBox from "../components/SearchBox";
 import MovieCarousel from "../components/MovieCarousel";
+import { useState, useEffect } from "react";
+import { getMovies } from "../services/movieService";
 
 function Home() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // const modaProducts = movies.filter((product) =>
+  //   product?.category?.startsWith("Moda"),
+  // );
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      try {
+        const data = await getMovies();
+        // console.log(data);
+        setMovies(data);
+      } catch {
+        setError("No se pudieron cargar la peliculas");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadMovies();
+  }, []);
+
   const featuredMovies = movies.filter((movie) => movie.featured);
   const newMovies = movies.slice(0, 3); // 3 primeras
+
+  if (loading) {
+    return <p className="empty-message">Cargando peliculas...</p>;
+  }
+
+  if (error) {
+    return <p className="empty-message">{error}</p>;
+  }
 
   return (
     <main>

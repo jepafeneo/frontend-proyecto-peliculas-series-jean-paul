@@ -542,6 +542,12 @@ img {
   background-color: #dc2626;
 }
 
+.movie-filters {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* Media queries */
 
 @media (min-width: 768px) {

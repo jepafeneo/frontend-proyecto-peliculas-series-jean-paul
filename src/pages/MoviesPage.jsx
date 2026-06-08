@@ -1,13 +1,33 @@
-import { movies } from "../data/movies";
+// import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getMovies } from "../services/movieService";
 import MovieFilters from "../components/MovieFilters";
 import useFilteredSortedMovies from "../hooks/useFilteredSortedMovies";
 
 function MoviesPage() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("Todos");
   const [sortBy, setSortBy] = useState("default");
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      try {
+        const data = await getMovies();
+        // console.log(data)
+        setMovies(data);
+      } catch {
+        setError("No se pudieron cargar la peliculas");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadMovies();
+  }, []);
 
   const { sortedMovies } = useFilteredSortedMovies(
     movies,
@@ -19,6 +39,14 @@ function MoviesPage() {
   const hasResults = sortedMovies.length > 0;
 
   const genres = ["Todos", ...new Set(movies.map((movie) => movie.genre))];
+
+  if (loading) {
+    return <p className="empty-message">Cargando peliculas...</p>;
+  }
+
+  if (error) {
+    return <p className="empty-message">{error}</p>;
+  }
 
   return (
     <main>

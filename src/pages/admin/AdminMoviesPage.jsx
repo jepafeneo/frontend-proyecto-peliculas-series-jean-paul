@@ -1,13 +1,30 @@
 import { useEffect, useState, useRef } from "react";
-import { movies as initialMovies } from "../../data/movies";
+// import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
+import { getMovies } from "../../services/movieService";
 
 function AdminMoviesPage() {
   const [showForm, setShowForm] = useState(false);
-  const [movies, setMovies] = useState(initialMovies);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [message, setMessage] = useState("");
   const [movieToDelete, setMovieToDelete] = useState(null);
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      try {
+        const data = await getMovies();
+        setMovies(data);
+      } catch {
+        setError("No se pudieron cargar la peliculas");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadMovies();
+  }, []);
 
   const messageRef = useRef(null);
 
@@ -88,6 +105,14 @@ function AdminMoviesPage() {
     });
   }, [movieToDelete]);
 
+  if (loading) {
+    return <p className="empty-message">Cargando peliculas...</p>;
+  }
+
+  if (error) {
+    return <p className="empty-message">{error}</p>;
+  }
+
   return (
     <section className="admin-section">
       {message && (
@@ -124,7 +149,7 @@ function AdminMoviesPage() {
 
       <div className="admin-list">
         {movies.map((movie) => (
-          <article className="admin-list-item" key={movie.id}>
+          <article className="admin-list-item" key={movie._id}>
             <img src={movie.image} alt={movie.title} />
             <div>
               <h3>{movie.title}</h3>
