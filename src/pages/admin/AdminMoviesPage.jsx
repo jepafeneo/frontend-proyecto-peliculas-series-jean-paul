@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import MovieForm from "../../components/MovieForm";
 import {
   createMovie,
+  deleteMovie,
   getMovies,
   updateMovie,
 } from "../../services/movieService";
@@ -44,19 +45,19 @@ function AdminMoviesPage() {
     }
   };
 
-  const handleDeleteMovie = (id) => {
-    // const confimed = confirm("¿Desea eliminar esta pelicula?");
+  const handleDeleteMovie = async (id) => {
+    try {
+      await deleteMovie(id);
 
-    // if (!confimed) {
-    //   return;
-    // }
+      const filteredMovies = movies.filter((movie) => movie._id != id);
 
-    const filteredMovies = movies.filter((movie) => movie._id != id);
-    setMovies(filteredMovies);
+      setMovies(filteredMovies);
+      setMovieToDelete(null);
 
-    setMovieToDelete(null);
-
-    setMessage("Pelicula eliminada correctamente");
+      setMessage("Pelicula eliminada correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const handleUpdateMovie = async (movieId, movieData) => {
@@ -205,7 +206,7 @@ function AdminMoviesPage() {
               <button
                 className="modal-button danger"
                 type="button"
-                onClick={() => handleDeleteMovie(movieToDelete.id)}
+                onClick={() => handleDeleteMovie(movieToDelete._id)}
               >
                 Eliminar
               </button>
