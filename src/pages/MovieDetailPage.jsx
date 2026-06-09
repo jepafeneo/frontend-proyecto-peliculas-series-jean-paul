@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-// import { movies } from "../data/movies";
 import { useEffect, useState } from "react";
 import { getMovieById } from "../services/movieService";
 

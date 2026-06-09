@@ -1,9 +1,23 @@
 import Navbar from "./Navbar";
 import logo from "../assets/favicon.svg";
 import SearchBox from "./SearchBox";
-import { movies } from "../data/movies";
+import { useState, useEffect } from "react";
+import { getMovies } from "../services/movieService";
+// import { movies } from "../data/movies";
 
 function Header() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      const data = await getMovies();
+      setMovies(data);
+    };
+    loadMovies();
+  }, []);
+
+  console.log(movies);
+
   return (
     <header className="site-header">
       <div className="header-content container">

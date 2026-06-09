@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-// import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
 import {
   createMovie,

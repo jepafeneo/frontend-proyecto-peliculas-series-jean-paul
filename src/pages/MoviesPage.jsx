@@ -1,4 +1,3 @@
-// import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
 import { useState, useEffect } from "react";
 import { getMovies } from "../services/movieService";
@@ -18,10 +17,9 @@ function MoviesPage() {
     const loadMovies = async () => {
       try {
         const data = await getMovies();
-        // console.log(data)
         setMovies(data);
       } catch {
-        setError("No se pudieron cargar la peliculas");
+        setError("No se pudieron cargar las peliculas");
       } finally {
         setLoading(false);
       }

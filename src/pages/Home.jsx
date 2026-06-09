@@ -1,7 +1,5 @@
-// import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
 import { Link } from "react-router-dom";
-// import SearchBox from "../components/SearchBox";
 import MovieCarousel from "../components/MovieCarousel";
 import { useState, useEffect } from "react";
 import { getMovies } from "../services/movieService";
