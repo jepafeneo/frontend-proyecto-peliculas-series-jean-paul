@@ -16,10 +16,26 @@ export const getMovieById = async (id) => {
   const response = await fetch(`${API_URL}/${id}`);
 
   if (!response.ok) {
-    throw new Error("Error al obtener la pelicula");
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Error al obtener la pelicula");
   }
 
   const data = await response.json();
 
   return data;
+};
+
+export const createMovie = async (movieData) => {
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(movieData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Error al crear la pelicula");
+  }
+
+  return response.json();
 };

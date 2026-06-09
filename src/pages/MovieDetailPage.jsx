@@ -18,8 +18,8 @@ function MovieDetailPage() {
       try {
         const data = await getMovieById(id);
         setMovie(data);
-      } catch {
-        setError("Pelicula no encontrada");
+      } catch (error) {
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -31,16 +31,13 @@ function MovieDetailPage() {
     return <p className="empty-message">Cargando pelicula</p>;
   }
 
-  // if (error) {
-  //   return <p className="empty-message">{error}</p>;
-  // }
-
-  if (!movie) {
+  if (error || !movie) {
     return (
       <main>
         <section className="catalog-section">
           <div className="container">
-            <h1>Contenido no encontrado</h1>
+            <h1>{error || "Contenido no encontrado"}</h1>
+
             <Link className="button" to="/movies">
               Volver al catalogo
             </Link>
@@ -55,6 +52,7 @@ function MovieDetailPage() {
       <section className="catalog-section">
         <div className="container">
           <article className="movie-detail">
+            {/* <img src={`/images/${movie.image}`} alt="" /> */}
             <img src={movie.image} alt={movie.title} />
 
             <div className="movie-detail-content">

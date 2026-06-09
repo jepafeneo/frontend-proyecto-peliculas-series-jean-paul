@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 // import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
-import { getMovies } from "../../services/movieService";
+import { createMovie, getMovies } from "../../services/movieService";
 
 function AdminMoviesPage() {
   const [showForm, setShowForm] = useState(false);
@@ -28,17 +28,16 @@ function AdminMoviesPage() {
 
   const messageRef = useRef(null);
 
-  const handleCreateMovie = (movieData) => {
-    const newMovie = {
-      ...movieData,
-      id: Date.now(),
-    };
+  const handleCreateMovie = async (movieData) => {
+    try {
+      const newMovie = await createMovie(movieData);
 
-    setMovies([...movies, newMovie]);
-
-    setShowForm(false);
-
-    setMessage("Pelicula creada correctamente");
+      setMovies([...movies, newMovie]);
+      setShowForm(false);
+      setMessage("Pelicula creada correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const handleDeleteMovie = (id) => {
