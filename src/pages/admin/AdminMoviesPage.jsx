@@ -1,7 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 // import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
-import { createMovie, getMovies } from "../../services/movieService";
+import {
+  createMovie,
+  getMovies,
+  updateMovie,
+} from "../../services/movieService";
 
 function AdminMoviesPage() {
   const [showForm, setShowForm] = useState(false);
@@ -47,7 +51,7 @@ function AdminMoviesPage() {
     //   return;
     // }
 
-    const filteredMovies = movies.filter((movie) => movie.id != id);
+    const filteredMovies = movies.filter((movie) => movie._id != id);
     setMovies(filteredMovies);
 
     setMovieToDelete(null);
@@ -55,26 +59,26 @@ function AdminMoviesPage() {
     setMessage("Pelicula eliminada correctamente");
   };
 
-  const handleUpdateMovie = (movieId, movieData) => {
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id == movieId) {
-        const updatedMovie = {
-          ...movie,
-          ...movieData,
-        };
+  const handleUpdateMovie = async (movieId, movieData) => {
+    try {
+      const updatedMovie = await updateMovie(movieId, movieData);
 
-        return updatedMovie;
-      }
+      const updatedMovies = movies.map((movie) => {
+        if (movie._id == movieId) {
+          return updatedMovie;
+        }
 
-      return movie;
-    });
+        return movie;
+      });
 
-    setMovies(updatedMovies);
+      setMovies(updatedMovies);
+      setSelectedMovie(null);
+      setShowForm(false);
 
-    setSelectedMovie(null);
-    setShowForm(false);
-
-    setMessage("Pelicula actualizada correctamente");
+      setMessage("Pelicula actualizada correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   useEffect(() => {

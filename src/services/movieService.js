@@ -31,10 +31,26 @@ export const createMovie = async (movieData) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(movieData),
   });
+  a;
 
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || "Error al crear la pelicula");
+  }
+
+  return response.json();
+};
+
+export const updateMovie = async (movieId, movieData) => {
+  const response = await fetch(`${API_URL}/${movieId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(movieData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Error al actualizar la pelicula");
   }
 
   return response.json();

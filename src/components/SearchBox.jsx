@@ -33,10 +33,10 @@ function SearchBox({ movies }) {
           {results.length > 0 ? (
             results.map((movie) => (
               <Link
-                key={movie.id}
+                key={movie._id}
                 onClick={() => setSearch("")}
                 className="search-box-result"
-                to={`/movies/${movie.id}`}
+                to={`/movies/${movie._id}`}
               >
                 <strong>{movie.title}</strong>
                 <span>

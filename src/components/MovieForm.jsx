@@ -54,7 +54,7 @@ function MovieForm({ onCreateMovie, movie, onUpdateMovie }) {
     }
 
     if (isEditing) {
-      onUpdateMovie(movie.id, form);
+      onUpdateMovie(movie._id, form);
     } else {
       onCreateMovie(form);
     }
