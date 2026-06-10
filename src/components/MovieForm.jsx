@@ -10,7 +10,7 @@ const initialForm = {
   featured: false,
 };
 
-function MovieForm({ onCreateMovie, movie, onUpdateMovie }) {
+function MovieForm({ onCreateMovie, movie, onUpdateMovie, isSaving }) {
   const [form, setForm] = useState(initialForm);
 
   const isEditing = Boolean(movie);
@@ -24,7 +24,7 @@ function MovieForm({ onCreateMovie, movie, onUpdateMovie }) {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!form.title.trim()) {
@@ -54,9 +54,9 @@ function MovieForm({ onCreateMovie, movie, onUpdateMovie }) {
     }
 
     if (isEditing) {
-      onUpdateMovie(movie._id, form);
+      await onUpdateMovie(movie._id, form);
     } else {
-      onCreateMovie(form);
+      await onCreateMovie(form);
     }
 
     setForm(initialForm);
@@ -154,8 +154,18 @@ function MovieForm({ onCreateMovie, movie, onUpdateMovie }) {
         />
       </div>
 
-      <button className="button movie-form-button" type="submit">
-        {isEditing ? "Actualizar pelicula" : "Guardar pelicula"}
+      <button
+        disabled={isSaving}
+        className="button movie-form-button"
+        type="submit"
+      >
+        {/* {isSaving
+          ? "Guardando"
+          : isEditing
+            ? "Actualizar pelicula"
+            : "Crear pelicula"} */}
+
+        {isSaving ? "Guardando..." : "Guardar pelicula"}
       </button>
 
       <pre>{JSON.stringify(form, null, 2)}</pre>

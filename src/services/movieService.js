@@ -1,28 +1,25 @@
-const API_URL = "http://localhost:3000/api/movies";
+const API_URL = import.meta.env.VITE_API_URL;
 
-export const getMovies = async () => {
-  const response = await fetch(API_URL);
+const handleResponse = async (response) => {
+  const data = await response.json();
 
   if (!response.ok) {
-    throw new Error("Error al obtener las peliculas");
+    throw new Error(data.message || "Error en la petición");
   }
-
-  const data = await response.json();
 
   return data;
 };
 
-export const getMovieById = async (id) => {
-  const response = await fetch(`${API_URL}/${id}`);
+export const getMovies = async () => {
+  const response = await fetch(API_URL);
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Error al obtener la pelicula");
-  }
+  return handleResponse(response);
+};
 
-  const data = await response.json();
+export const getMovieById = async (movieId) => {
+  const response = await fetch(`${API_URL}/${movieId}`);
 
-  return data;
+  return handleResponse(response);
 };
 
 export const createMovie = async (movieData) => {
@@ -32,12 +29,7 @@ export const createMovie = async (movieData) => {
     body: JSON.stringify(movieData),
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Error al crear la pelicula");
-  }
-
-  return response.json();
+  return handleResponse(response);
 };
 
 export const updateMovie = async (movieId, movieData) => {
@@ -47,12 +39,7 @@ export const updateMovie = async (movieId, movieData) => {
     body: JSON.stringify(movieData),
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Error al actualizar la pelicula");
-  }
-
-  return response.json();
+  return handleResponse(response);
 };
 
 export const deleteMovie = async (movieId) => {
@@ -60,10 +47,5 @@ export const deleteMovie = async (movieId) => {
     method: "DELETE",
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Error al eliminar la pelicula");
-  }
-
-  return response.json();
+  return handleResponse(response);
 };

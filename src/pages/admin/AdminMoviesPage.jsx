@@ -15,6 +15,10 @@ function AdminMoviesPage() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [message, setMessage] = useState("");
   const [movieToDelete, setMovieToDelete] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const messageRef = useRef(null);
+  const formRef = useRef(null);
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -30,10 +34,10 @@ function AdminMoviesPage() {
     loadMovies();
   }, []);
 
-  const messageRef = useRef(null);
-
   const handleCreateMovie = async (movieData) => {
     try {
+      setIsSaving(true);
+
       const newMovie = await createMovie(movieData);
 
       setMovies([...movies, newMovie]);
@@ -41,11 +45,15 @@ function AdminMoviesPage() {
       setMessage("Pelicula creada correctamente");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleDeleteMovie = async (id) => {
     try {
+      setIsSaving(true);
+
       await deleteMovie(id);
 
       const filteredMovies = movies.filter((movie) => movie._id != id);
@@ -56,11 +64,15 @@ function AdminMoviesPage() {
       setMessage("Pelicula eliminada correctamente");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleUpdateMovie = async (movieId, movieData) => {
     try {
+      setIsSaving(true);
+
       const updatedMovie = await updateMovie(movieId, movieData);
 
       const updatedMovies = movies.map((movie) => {
@@ -78,6 +90,8 @@ function AdminMoviesPage() {
       setMessage("Pelicula actualizada correctamente");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -107,6 +121,17 @@ function AdminMoviesPage() {
       }
     });
   }, [movieToDelete]);
+
+  useEffect(() => {
+    if (!selectedMovie) {
+      return;
+    }
+
+    formRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [selectedMovie]);
 
   if (loading) {
     return <p className="empty-message">Cargando peliculas...</p>;
@@ -143,11 +168,14 @@ function AdminMoviesPage() {
       </div>
 
       {showForm && (
-        <MovieForm
-          movie={selectedMovie}
-          onCreateMovie={handleCreateMovie}
-          onUpdateMovie={handleUpdateMovie}
-        />
+        <div ref={formRef}>
+          <MovieForm
+            movie={selectedMovie}
+            onCreateMovie={handleCreateMovie}
+            onUpdateMovie={handleUpdateMovie}
+            isSaving={isSaving}
+          />
+        </div>
       )}
 
       <div className="admin-list">
@@ -195,6 +223,7 @@ function AdminMoviesPage() {
 
             <div className="modal-actions">
               <button
+                disabled={isSaving}
                 className="modal-button secondary"
                 type="button"
                 onClick={() => setMovieToDelete(null)}
@@ -203,11 +232,12 @@ function AdminMoviesPage() {
               </button>
 
               <button
+                disabled={isSaving}
                 className="modal-button danger"
                 type="button"
                 onClick={() => handleDeleteMovie(movieToDelete._id)}
               >
-                Eliminar
+                {isSaving ? "Eliminando..." : "Eliminar"}
               </button>
             </div>
           </div>

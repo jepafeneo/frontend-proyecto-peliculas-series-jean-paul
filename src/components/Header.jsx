@@ -16,8 +16,6 @@ function Header() {
     loadMovies();
   }, []);
 
-  console.log(movies);
-
   return (
     <header className="site-header">
       <div className="header-content container">

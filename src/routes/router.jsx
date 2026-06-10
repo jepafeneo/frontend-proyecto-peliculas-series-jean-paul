@@ -7,7 +7,7 @@ import MovieDetailPage from "../pages/MovieDetailPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 import Adminlayout from "../layouts/AdminLayout";
-import DashboardPage from "../pages/admin/DaskboardPage";
+import DashboardPage from "../pages/admin/DashboardPage";
 import AdminMoviesPage from "../pages/admin/AdminMoviesPage";
 
 export const router = createBrowserRouter([
