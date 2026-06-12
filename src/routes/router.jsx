@@ -9,6 +9,8 @@ import NotFoundPage from "../pages/NotFoundPage";
 import Adminlayout from "../layouts/AdminLayout";
 import DashboardPage from "../pages/admin/DashboardPage";
 import AdminMoviesPage from "../pages/admin/AdminMoviesPage";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ export const router = createBrowserRouter([
       {
         path: "movies/:id",
         element: <MovieDetailPage />,
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />
+      },
+      {
+        path: "login",
+        element: <LoginPage />
       },
       // {
       //   path: "*",
