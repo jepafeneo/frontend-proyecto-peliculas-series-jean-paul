@@ -12,6 +12,8 @@ import AdminMoviesPage from "../pages/admin/AdminMoviesPage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 
+import adminLoader from "../loaders/adminLoader";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -30,18 +32,24 @@ export const router = createBrowserRouter([
         path: "movies/:id",
         element: <MovieDetailPage />,
       },
-      {
-        path: 'register',
-        element: <RegisterPage />
-      },
-      {
-        path: "login",
-        element: <LoginPage />
-      },
       // {
       //   path: "*",
       //   element: <NotFoundPage />,
       // },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
     ],
   },
   {
@@ -50,10 +58,12 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: adminLoader,
         element: <DashboardPage />,
       },
       {
         path: "movies",
+        loader: adminLoader,
         element: <AdminMoviesPage />,
       },
     ],

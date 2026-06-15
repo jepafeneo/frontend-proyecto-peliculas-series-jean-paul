@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/authService";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const initialForm = {
   email: "",
@@ -9,6 +11,10 @@ const initialForm = {
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function LoginPage() {
+  const context = useAuth();
+
+  const navigate = useNavigate();
+
   const [form, setForm] = useState(initialForm);
 
   const [message, setMessage] = useState("");
@@ -62,12 +68,16 @@ function LoginPage() {
 
       const data = await login(user);
 
+      context.login(data);
+
       setMessage(data.message || "Sesión iniciada correctamente");
 
       setForm(initialForm);
+
+      navigate("/admin/movies");
     } catch (error) {
       setError(error.message);
-    } 
+    }
   };
 
   return (

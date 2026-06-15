@@ -51,6 +51,15 @@ img {
   gap: 1rem;
 }
 
+.header-item button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
 .hero {
   padding: 5rem 0;
 }
