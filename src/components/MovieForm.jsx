@@ -10,7 +10,7 @@ const initialForm = {
   featured: false,
 };
 
-function MovieForm({ onCreateMovie, movie, onUpdateMovie, isSaving }) {
+function MovieForm({ onCreateMovie, onUpdateMovie, isSaving, movie }) {
   const [form, setForm] = useState(initialForm);
 
   const isEditing = Boolean(movie);
