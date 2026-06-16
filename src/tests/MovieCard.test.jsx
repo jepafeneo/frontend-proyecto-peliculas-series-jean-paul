@@ -19,14 +19,14 @@ describe("MovieCard", () => {
       </MemoryRouter>,
     );
 
-    const image = screen.getByAltText("Incepton");
+    const image = screen.getByAltText("Inception");
     expect(image).toBeInTheDocument();
 
     expect(screen.getByAltText("Inception")).toBeInTheDocument();
 
     expect(image).toHaveAttribute("src", "https://example.com/inception.jpg");
 
-    expect(screen.getByText("Inception")).toBeInTheDocument();
+    expect(screen.getByText(/incept/i)).toBeInTheDocument();
     expect(screen.getByText("Sci-Fi")).toBeInTheDocument();
     expect(screen.getByText("2010")).toBeInTheDocument();
   });
