@@ -1,22 +1,20 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getMovies } from "../services/movieService";
 
 function SearchBox({ movies }) {
   const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
 
-  const normalizedSearch = search.toLowerCase().trim();
+  useEffect(() => {
+    const loadMovies = async () => {
+      const movies = await getMovies(search);
 
-  const results = movies
-    .filter((movie) => {
-      const title = movie.title.toLowerCase();
-      // const description = movie?.description?.toLowerCase();
-      const genre = movie.genre.toLowerCase();
+      setResults(movies.slice(0, 3));
+    };
 
-      return (
-        title.includes(normalizedSearch) || genre.includes(normalizedSearch)
-      );
-    })
-    .slice(0, 3);
+    loadMovies();
+  }, [search]);
 
   return (
     <div className="search-box">

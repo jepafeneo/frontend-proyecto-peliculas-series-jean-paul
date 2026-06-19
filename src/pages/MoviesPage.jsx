@@ -2,7 +2,6 @@ import MovieList from "../components/MovieList";
 import { useState, useEffect } from "react";
 import { getMovies } from "../services/movieService";
 import MovieFilters from "../components/MovieFilters";
-import useFilteredSortedMovies from "../hooks/useFilteredSortedMovies";
 
 function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -33,7 +32,7 @@ function MoviesPage() {
         sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
       const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
 
-      const movies = await getMovies(field, order, search);
+      const movies = await getMovies(search, field, order, selectedGenre);
 
       setMovies(movies);
     };

@@ -29,7 +29,8 @@ function MovieFilters({
         value={selectedGenre}
         onChange={(event) => onGenreChange(event.target.value)}
       >
-        {genres.map((genre) => (
+        <option value="">Todos los géneros</option>
+        {genres.slice(1).map((genre) => (
           <option key={genre} value={genre}>
             {genre}
           </option>
