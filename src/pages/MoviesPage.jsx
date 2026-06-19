@@ -33,11 +33,11 @@ function MoviesPage() {
         sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
       const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
 
-      const sortedMovies = await getMovies(field, order);
+      const movies = await getMovies(field, order, search);
 
-      setMovies(sortedMovies);
+      setMovies(movies);
     };
-    
+
     loadMovies();
   }, [search, selectedGenre, sortBy]);
 
