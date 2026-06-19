@@ -44,6 +44,7 @@ function Home() {
       <section className="hero">
         <div className="container">
           {/* <img src="https://picsum.photos/1100/200" alt="Lorem Picsum" /> */}
+
           <span className="hero-label">Proyecto final</span>
           <h1>Catálogo de Películas y Series</h1>
           <p>

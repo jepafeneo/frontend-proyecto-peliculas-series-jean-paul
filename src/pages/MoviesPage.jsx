@@ -27,14 +27,21 @@ function MoviesPage() {
     loadMovies();
   }, []);
 
-  const { sortedMovies } = useFilteredSortedMovies(
-    movies,
-    search,
-    selectedGenre,
-    sortBy,
-  );
+  useEffect(() => {
+    const loadMovies = async () => {
+      const field =
+        sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
+      const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
 
-  const hasResults = sortedMovies.length > 0;
+      const sortedMovies = await getMovies(field, order);
+
+      setMovies(sortedMovies);
+    };
+    
+    loadMovies();
+  }, [search, selectedGenre, sortBy]);
+
+  const hasResults = movies.length > 0;
 
   const genres = ["Todos", ...new Set(movies.map((movie) => movie.genre))];
 
@@ -66,7 +73,7 @@ function MoviesPage() {
           />
 
           {hasResults ? (
-            <MovieList movies={sortedMovies} />
+            <MovieList movies={movies} />
           ) : (
             <p className="empty-message">
               No encontramos resultados para la búsqueda

@@ -43,6 +43,7 @@ function MovieFilters({
       >
         <option value="default">Orden por defecto</option>
         <option value="az">A-Z</option>
+        <option value="za">Z-A</option>
         <option value="newest">Más nuevo</option>
         <option value="oldest">Más viejo</option>
       </select>

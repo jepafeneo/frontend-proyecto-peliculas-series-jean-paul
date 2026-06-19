@@ -15,8 +15,8 @@ const handleResponse = async (response) => {
   return data;
 };
 
-export const getMovies = async () => {
-  const response = await fetch(API_URL);
+export const getMovies = async (sortBy = "title", order = "asc") => {
+  const response = await fetch(`${API_URL}?sortBy=${sortBy}&order=${order}`);
 
   return handleResponse(response);
 };
