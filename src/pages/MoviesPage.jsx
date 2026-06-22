@@ -8,6 +8,9 @@ function MoviesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
   const [sortBy, setSortBy] = useState("default");
@@ -21,11 +24,16 @@ function MoviesPage() {
 
         // console.log(search, field, order, selectedGenre);
 
-        const data = await getMovies(1, 4, search, field, order, selectedGenre);
+        const data = await getMovies(
+          page,
+          3,
+          search,
+          field,
+          order,
+          selectedGenre,
+        );
 
-        // console.log("Películas cargadas:", data);
-
-        setMovies(data);
+        setMovies(data.movies);
       } catch {
         setError("No se pudieron cargar las peliculas");
       } finally {
@@ -33,7 +41,7 @@ function MoviesPage() {
       }
     };
     loadMovies();
-  }, [search, selectedGenre, sortBy]);
+  }, [search, selectedGenre, sortBy, page]);
 
   // useEffect(() => {
   //   const loadMovies = async () => {
@@ -81,7 +89,15 @@ function MoviesPage() {
           />
 
           {hasResults ? (
-            <MovieList movies={movies} />
+            <>
+              <MovieList movies={movies} />
+
+              <div className="pagination">
+                <button onClick={() => setPage(page - 1)}>Anterior</button>
+
+                <button onClick={() => setPage(page + 1)}>Siguiente</button>
+              </div>
+            </>
           ) : (
             <p className="empty-message">
               No encontramos resultados para la búsqueda

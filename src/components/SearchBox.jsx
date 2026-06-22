@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovies } from "../services/movieService";
 
-function SearchBox({ movies }) {
+function SearchBox() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
   useEffect(() => {
     const loadMovies = async () => {
-      const movies = await getMovies(search);
+      const movies = await getMovies(1, 3, search);
 
-      setResults(movies.slice(0, 3));
+      setResults(movies);
     };
 
     loadMovies();
