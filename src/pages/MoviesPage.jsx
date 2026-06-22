@@ -9,13 +9,22 @@ function MoviesPage() {
   const [error, setError] = useState("");
 
   const [search, setSearch] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("Todos");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [sortBy, setSortBy] = useState("default");
 
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const data = await getMovies();
+        const field =
+          sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
+        const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
+
+        // console.log(search, field, order, selectedGenre);
+
+        const data = await getMovies(1, 4, search, field, order, selectedGenre);
+
+        // console.log("Películas cargadas:", data);
+
         setMovies(data);
       } catch {
         setError("No se pudieron cargar las peliculas");
@@ -24,21 +33,21 @@ function MoviesPage() {
       }
     };
     loadMovies();
-  }, []);
-
-  useEffect(() => {
-    const loadMovies = async () => {
-      const field =
-        sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
-      const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
-
-      const movies = await getMovies(search, field, order, selectedGenre);
-
-      setMovies(movies);
-    };
-
-    loadMovies();
   }, [search, selectedGenre, sortBy]);
+
+  // useEffect(() => {
+  //   const loadMovies = async () => {
+  //     const field =
+  //       sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
+  //     const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
+
+  //     const movies = await getMovies(search, field, order, selectedGenre);
+
+  //     setMovies(movies);
+  //   };
+
+  //   loadMovies();
+  // }, [search, selectedGenre, sortBy]);
 
   const hasResults = movies.length > 0;
 

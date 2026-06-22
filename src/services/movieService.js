@@ -16,14 +16,27 @@ const handleResponse = async (response) => {
 };
 
 export const getMovies = async (
+  page = 1,
+  limit = 4,
   search = "",
   sortBy = "title",
   order = "asc",
   selectedGenre = "",
 ) => {
-  const response = await fetch(
-    `${API_URL}?search=${search}&sortBy=${sortBy}&order=${order}&genre=${selectedGenre}`,
-  );
+  const queryParams = new URLSearchParams({
+    page,
+    limit,
+    search,
+    sortBy,
+    order,
+    genre: selectedGenre,
+  });
+
+  const response = await fetch(`${API_URL}?${queryParams.toString()}`);
+
+  // const response = await fetch(
+  //   `${API_URL}?page=${page}&limit=${limit}&search=${search}&sortBy=${sortBy}&order=${order}&genre=${selectedGenre}`,
+  // );
 
   return handleResponse(response);
 };
