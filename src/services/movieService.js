@@ -34,12 +34,14 @@ export const getMovies = async (
 
   const response = await fetch(`${API_URL}?${queryParams.toString()}`);
 
-  // const response = await fetch(
-  //   `${API_URL}?page=${page}&limit=${limit}&search=${search}&sortBy=${sortBy}&order=${order}&genre=${selectedGenre}`,
-  // );
-
   return handleResponse(response);
 };
+
+export const getMoviesGenres = async () => {
+  const response = await fetch(`${API_URL}/genres`);
+
+  return handleResponse(response);
+}
 
 export const getMovieById = async (movieId) => {
   const response = await fetch(`${API_URL}/${movieId}`);

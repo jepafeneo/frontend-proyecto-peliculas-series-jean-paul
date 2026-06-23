@@ -1,6 +1,6 @@
 import MovieList from "../components/MovieList";
 import { useState, useEffect } from "react";
-import { getMovies } from "../services/movieService";
+import { getMovies, getMoviesGenres } from "../services/movieService";
 import MovieFilters from "../components/MovieFilters";
 
 function MoviesPage() {
@@ -14,6 +14,22 @@ function MoviesPage() {
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
   const [sortBy, setSortBy] = useState("default");
+
+  const [genres, setGenres] = useState([]);
+
+  useEffect(() => {
+    const loadGenres = async () => {
+      try {
+        const data = await getMoviesGenres();
+
+        setGenres(data);
+      } catch {
+        setError("No se pudieron cargar los géneros");
+      }
+    };
+
+    loadGenres();
+  }, []);
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -43,23 +59,9 @@ function MoviesPage() {
     loadMovies();
   }, [search, selectedGenre, sortBy, page]);
 
-  // useEffect(() => {
-  //   const loadMovies = async () => {
-  //     const field =
-  //       sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
-  //     const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
-
-  //     const movies = await getMovies(search, field, order, selectedGenre);
-
-  //     setMovies(movies);
-  //   };
-
-  //   loadMovies();
-  // }, [search, selectedGenre, sortBy]);
-
   const hasResults = movies.length > 0;
 
-  const genres = ["Todos", ...new Set(movies.map((movie) => movie.genre))];
+  // const genres = ["Todos", ...new Set(movies.map((movie) => movie.genre))];
 
   if (loading) {
     return <p className="empty-message">Cargando peliculas...</p>;
