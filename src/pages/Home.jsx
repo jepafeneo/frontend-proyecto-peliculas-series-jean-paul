@@ -1,24 +1,35 @@
 import MovieList from "../components/MovieList";
 import { Link } from "react-router-dom";
-import MovieCarousel from "../components/MovieCarousel";
 import { useState, useEffect } from "react";
-import { getMovies } from "../services/movieService";
+import { getMovies, getMoviesFeatured } from "../services/movieService";
 
 function Home() {
-  const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // const modaProducts = movies.filter((product) =>
-  //   product?.category?.startsWith("Moda"),
-  // );
+  const [moviesCienciaFiccion, setMoviesCienciaFiccion] = useState([]);
+  const [moviesFeatured, setMoviesFeatured] = useState([]);
+  const [newMovies, setNewMovies] = useState([]);
 
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const data = await getMovies();
-        // console.log(data);
-        setMovies(data);
+        const data = await getMovies(
+          1,
+          3,
+          "",
+          "title",
+          "asc",
+          "Ciencia ficción",
+        );
+
+        setMoviesCienciaFiccion(data.movies);
+
+        const dataFeatured = await getMoviesFeatured();
+        setMoviesFeatured(dataFeatured.movies);
+
+        const dataNewMovies = await getMovies(1, 3, "", "year", "desc");
+        setNewMovies(dataNewMovies.movies);
       } catch {
         setError("No se pudieron cargar la peliculas");
       } finally {
@@ -27,9 +38,6 @@ function Home() {
     };
     loadMovies();
   }, []);
-
-  const featuredMovies = movies.filter((movie) => movie.featured);
-  const newMovies = movies.slice(0, 3); // 3 primeras
 
   if (loading) {
     return <p className="empty-message">Cargando peliculas...</p>;
@@ -52,8 +60,6 @@ function Home() {
             contenido desde un panel privado.
           </p>
 
-          {/* <SearchBox movies={movies} /> */}
-
           <Link className="button" to="/movies">
             Ver catálogo
           </Link>
@@ -62,13 +68,19 @@ function Home() {
 
       <section className="featured-section">
         <div className="container">
-          <h2>Contenido destacado</h2>
+          <h2>Películas de Ciencia Ficción</h2>
 
-          <MovieList movies={featuredMovies} />
+          <MovieList movies={moviesCienciaFiccion} />
         </div>
       </section>
 
-      <MovieCarousel movies={movies} />
+      <section className="featured-section">
+        <div className="container">
+          <h2>Contenido destacado</h2>
+
+          <MovieList movies={moviesFeatured} />
+        </div>
+      </section>
 
       <section className="new-movies-section">
         <div className="container">

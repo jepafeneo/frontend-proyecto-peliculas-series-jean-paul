@@ -43,6 +43,12 @@ export const getMoviesGenres = async () => {
   return handleResponse(response);
 }
 
+export const getMoviesFeatured = async () => {
+  const response = await fetch(`${API_URL}/featured`);
+
+  return handleResponse(response);
+}
+
 export const getMovieById = async (movieId) => {
   const response = await fetch(`${API_URL}/${movieId}`);
 

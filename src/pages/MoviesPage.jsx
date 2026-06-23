@@ -50,6 +50,7 @@ function MoviesPage() {
         );
 
         setMovies(data.movies);
+        setTotalPages(data.totalPages);
       } catch {
         setError("No se pudieron cargar las peliculas");
       } finally {
@@ -95,9 +96,20 @@ function MoviesPage() {
               <MovieList movies={movies} />
 
               <div className="pagination">
-                <button onClick={() => setPage(page - 1)}>Anterior</button>
+                <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+                  Anterior
+                </button>
 
-                <button onClick={() => setPage(page + 1)}>Siguiente</button>
+                <span className="pagination-info">
+                  Pagina {page} de {totalPages}
+                </span>
+
+                <button
+                  disabled={page === totalPages}
+                  onClick={() => setPage(page + 1)}
+                >
+                  Siguiente
+                </button>
               </div>
             </>
           ) : (
