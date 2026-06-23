@@ -98,6 +98,22 @@ http://localhost:5173
 npm test
 ```
 
+## vite.config.js
+
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.jsx',
+  },
+})
+```
+
 ---
 
 ## Generar build de producción
@@ -134,19 +150,26 @@ VITE_API_URL
 ## Estructura del proyecto
 
 ```txt
+public/
+└── images/
+    └── products/
+        └── default.png
 src/
 │
 ├── components/
 ├── context/
 ├── hooks/
 ├── layouts/
+├── loaders/
 ├── pages/
 ├── routes/
 ├── services/
 ├── tests/
 │
 ├── App.jsx
-└── main.jsx
+├── index.css
+├── main.jsx
+└── setupTests.jsx
 ```
 
 ---
