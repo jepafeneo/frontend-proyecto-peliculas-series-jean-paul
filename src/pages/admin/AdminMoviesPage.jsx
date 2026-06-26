@@ -24,7 +24,7 @@ function AdminMoviesPage() {
     const loadMovies = async () => {
       try {
         const data = await getMovies();
-        setMovies(data);
+        setMovies(data.movies);
       } catch {
         setError("No se pudieron cargar la peliculas");
       } finally {

@@ -51,9 +51,7 @@ function MovieDetailPage() {
       <section className="catalog-section">
         <div className="container">
           <article className="movie-detail">
-            {/* <img src={`/images/${movie.image}`} alt="" /> */}
-            <img src={movie.image} alt={movie.title} />
-
+            <img src={`/images/products/${movie.image}`} alt={movie.title} />
             <div className="movie-detail-content">
               <h1>{movie.title}</h1>
 
